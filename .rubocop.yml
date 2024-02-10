@@ -1,0 +1,52 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'Rakefile'
+    - 'bin/*'
+    - 'log/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*.rb'
+    - 'config/*.rb'
+    - 'config/initializers/*.rb'
+  NewCops: enable
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/BlockLength:
+  Max: 40
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+  Max: 40
+
+Style/Documentation:
+  Enabled: false
+
+Metrics:
+  Exclude:
+    - 'app/jobs/**/*.rb'
+
+RSpec/ExampleLength:
+  Max: 20
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+RSpec/ImplicitSubject:
+  EnforcedStyle: single_statement_only
+
+RSpec/ContextWording:
+  Prefixes:
+    - when
+    - with
+    - being
+    - as

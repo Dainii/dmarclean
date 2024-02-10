@@ -1,0 +1,10 @@
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
+
+<div  id="<%= dom_id @domain %>" class="relative isolate overflow-hidden pt-16">
+  <%= render partial: "header", locals: {domain: @domain} %>
+  <%= render partial: "stats", locals: {domain: @domain} %>
+</div>
+
+<%= render partial: "feedbacks", locals: {feedbacks: @domain.feedbacks} %>
