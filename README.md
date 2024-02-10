@@ -1,7 +1,10 @@
-# README
+DMARClean ![Rails](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+=========
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+
+DMARCLean is a rails based application to analyze and display result of various dmarc report.
+
+## TODO
 
 Things you may want to cover:
 
