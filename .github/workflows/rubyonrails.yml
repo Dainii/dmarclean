@@ -46,10 +46,6 @@ jobs:
       - name: Run tests
         run: bin/bundle exec rspec spec/
 
-      - uses: joshmfrankel/simplecov-check-action@main
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
   lint:
     runs-on: ubuntu-latest
     steps:

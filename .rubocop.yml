@@ -12,6 +12,7 @@ AllCops:
     - 'db/migrate/*.rb'
     - 'config/*.rb'
     - 'config/initializers/*.rb'
+    - 'vendor/**/*'
   NewCops: enable
 
 Layout/LineLength:
