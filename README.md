@@ -1,7 +1,9 @@
-DMARClean ![Rails](https://github.com/dainii/dmarclean/actions/workflows/rubyonrails.yml/badge.svg)
+DmarClean 
+![Rails](https://github.com/dainii/dmarclean/actions/workflows/rubyonrails.yml/badge.svg)
+[![codecov](https://codecov.io/gh/Dainii/dmarclean/graph/badge.svg?token=KVGRPG4SLG)](https://codecov.io/gh/Dainii/dmarclean)
 =========
 
-DMARCLean is a rails based application to analyze and display result of various dmarc report.
+DmarClean is a rails based application to analyze and display result of various dmarc report.
 
 ## TODO
 
