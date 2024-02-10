@@ -60,6 +60,8 @@ group :development, :test do
   # Brakeman detects security vulnerabilities in Ruby on Rails applications via static analysis
   gem 'brakeman'
 
+  gem 'bundler-audit'
+
   # rspec-rails is a testing framework for Rails 5+
   gem 'rspec-rails'
 
