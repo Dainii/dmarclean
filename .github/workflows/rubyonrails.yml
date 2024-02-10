@@ -45,6 +45,11 @@ jobs:
       # Add or replace test runners here
       - name: Run tests
         run: bin/bundle exec rspec spec/
+      # Codecov.io upload
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   lint:
     runs-on: ubuntu-latest
