@@ -1,6 +1,5 @@
-DMARClean ![Rails](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+DMARClean ![Rails](https://github.com/github/docs/actions/workflows/rubyonrails.yml/badge.svg)
 =========
-
 
 DMARCLean is a rails based application to analyze and display result of various dmarc report.
 
