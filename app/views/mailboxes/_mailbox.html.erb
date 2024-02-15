@@ -1,0 +1,32 @@
+<div id="<%= dom_id mailbox %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Address:</strong>
+    <%= mailbox.mail_address %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Server:</strong>
+    <%= mailbox.server %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Port:</strong>
+    <%= mailbox.port %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Verify SSL:</strong>
+    <%= mailbox.verify_ssl %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Disable SSL/TLS:</strong>
+    <%= mailbox.disable_ssl_tls %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this mailbox", mailbox, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this mailbox", edit_mailbox_path(mailbox), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

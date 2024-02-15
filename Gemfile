@@ -78,6 +78,8 @@ group :development, :test do
   gem 'shoulda-matchers'
 
   gem 'simplecov', require: false
+
+  gem 'smtp_mock', require: false
 end
 
 group :development do

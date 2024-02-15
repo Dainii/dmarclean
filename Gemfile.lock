@@ -109,11 +109,32 @@ GEM
       railties (>= 3.2)
     drb (2.2.0)
       ruby2_keywords
+    dry-core (1.0.1)
+      concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-inflector (1.0.0)
+    dry-logic (1.5.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-struct (1.6.0)
+      dry-core (~> 1.0, < 2)
+      dry-types (>= 1.7, < 2)
+      ice_nine (~> 0.11)
+      zeitwerk (~> 2.6)
+    dry-types (1.7.2)
+      bigdecimal (~> 3.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0)
+      dry-inflector (~> 1.0)
+      dry-logic (~> 1.4)
+      zeitwerk (~> 2.6)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    ice_nine (0.11.2)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -277,6 +298,8 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    smtp_mock (1.4.0)
+      dry-struct (~> 1.4)
     solid_queue (0.2.1)
       rails (~> 7.1)
     stimulus-rails (1.3.3)
@@ -343,6 +366,7 @@ DEPENDENCIES
   rubocop-rspec
   shoulda-matchers
   simplecov
+  smtp_mock
   solid_queue
   stimulus-rails
   tailwindcss-rails
