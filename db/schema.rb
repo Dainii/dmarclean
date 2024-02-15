@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_09_183046) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_12_114627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,10 +55,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_183046) do
     t.json "raw_content"
     t.datetime "begin_date"
     t.datetime "end_date"
-    t.float "report_id"
+    t.string "report_id"
     t.boolean "processed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "policy_published"
     t.index ["domain_id"], name: "index_feedbacks_on_domain_id"
     t.index ["organization_id"], name: "index_feedbacks_on_organization_id"
   end
@@ -79,6 +80,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_183046) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_organizations_on_name", unique: true
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.bigint "feedback_id", null: false
+    t.string "source_ip"
+    t.integer "count"
+    t.json "policy_evaluated"
+    t.json "identifiers"
+    t.json "auth_results"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feedback_id"], name: "index_records_on_feedback_id"
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
@@ -179,6 +192,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_183046) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "feedbacks", "domains"
   add_foreign_key "feedbacks", "organizations"
+  add_foreign_key "records", "feedbacks"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

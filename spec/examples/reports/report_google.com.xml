@@ -11,7 +11,7 @@
     </date_range>
   </report_metadata>
   <policy_published>
-    <domain>test.domain</domain>
+    <domain>google.domain</domain>
     <adkim>r</adkim>
     <aspf>r</aspf>
     <p>none</p>
@@ -21,7 +21,7 @@
   </policy_published>
   <record>
     <row>
-      <source_ip>149.202.84.162</source_ip>
+      <source_ip>12.34.56.78</source_ip>
       <count>2</count>
       <policy_evaluated>
         <disposition>none</disposition>
@@ -30,16 +30,16 @@
       </policy_evaluated>
     </row>
     <identifiers>
-      <header_from>test.domain</header_from>
+      <header_from>google.domain</header_from>
     </identifiers>
     <auth_results>
       <dkim>
-        <domain>test.domain</domain>
+        <domain>google.domain</domain>
         <result>pass</result>
         <selector>pmg</selector>
       </dkim>
       <spf>
-        <domain>test.domain</domain>
+        <domain>google.domain</domain>
         <result>pass</result>
       </spf>
     </auth_results>

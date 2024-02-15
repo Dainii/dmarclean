@@ -11,7 +11,7 @@
     </date_range>
   </report_metadata>
   <policy_published>
-    <domain>holygames.ch</domain>
+    <domain>outlook.domain</domain>
     <adkim>r</adkim>
     <aspf>r</aspf>
     <p>none</p>
@@ -21,7 +21,7 @@
   </policy_published>
   <record>
     <row>
-      <source_ip>149.202.84.162</source_ip>
+      <source_ip>12.34.56.78</source_ip>
       <count>1</count>
       <policy_evaluated>
         <disposition>none</disposition>
@@ -30,18 +30,18 @@
       </policy_evaluated>
     </row>
     <identifiers>
-      <envelope_to>hotmail.fr</envelope_to>
-      <envelope_from>holygames.ch</envelope_from>
-      <header_from>holygames.ch</header_from>
+      <envelope_to>recipient.domain</envelope_to>
+      <envelope_from>outlook.domain</envelope_from>
+      <header_from>outlook.domain</header_from>
     </identifiers>
     <auth_results>
       <dkim>
-        <domain>holygames.ch</domain>
+        <domain>outlook.domain</domain>
         <selector>pmg</selector>
         <result>pass</result>
       </dkim>
       <spf>
-        <domain>holygames.ch</domain>
+        <domain>outlook.domain</domain>
         <scope>mfrom</scope>
         <result>pass</result>
       </spf>

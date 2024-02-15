@@ -10,20 +10,26 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Feedback.create!(
+feedback = Feedback.create!(
   report: {
     io: Rails.root.join('spec', 'examples', 'reports', 'report_google.com.xml').open,
     filename: 'report_google.com.xml'
   }
 )
+ProcessReportJob.perform_later(feedback)
 
-Feedback.create!(
+feedback = Feedback.create!(
   report: {
     io: Rails.root.join('spec', 'examples', 'reports', 'report_outlook.com.xml').open,
     filename: 'report_outlook.com.xml'
   }
 )
+ProcessReportJob.perform_later(feedback)
 
-Domain.create!(
-  name: 'domain2.test'
+feedback = Feedback.create!(
+  report: {
+    io: Rails.root.join('spec', 'examples', 'reports', 'report_infomaniak.com.xml').open,
+    filename: 'report_infomaniak.com.xml'
+  }
 )
+ProcessReportJob.perform_later(feedback)

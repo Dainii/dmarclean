@@ -24,6 +24,9 @@ Metrics/ClassLength:
 Metrics/BlockLength:
   Max: 40
 
+Metrics/AbcSize:
+  Enabled: false
+
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*.rb'

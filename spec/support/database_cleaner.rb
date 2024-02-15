@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
+require 'database_cleaner/active_record'
+
 RSpec.configure do |config|
   config.before(:suite) do
-    DatabaseCleaner[:active_record].strategy = :truncation
-    DatabaseCleaner[:active_record].clean_with(:truncation)
-
-    Rails.application.load_seed
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 end
