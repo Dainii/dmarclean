@@ -1,17 +1,27 @@
 # frozen_string_literal: true
 
+require 'zip'
+
 class Feedback < ApplicationRecord
+  before_create :add_random_report_id
+
   belongs_to :domain, optional: true
   belongs_to :organization, optional: true
   has_many :records, dependent: :destroy
 
   has_one_attached :report
 
-  def parse_xml_report
-    # Parse the XML report and save it as json
-    self.raw_content = JSON.parse(Crack::XML.parse(report.download).to_json)
+  validates :report_id, uniqueness: { scope: :domain }
 
-    save
+  def extract_report
+    case report.filename.to_s
+    when /.zip$/
+      extract_from_zip_archive
+    when /.xml$/
+      extract_from_xml
+    when /.gz$/
+      extract_from_gzip_archive
+    end
   end
 
   def extract_data
@@ -21,6 +31,8 @@ class Feedback < ApplicationRecord
     extract_domain
     extract_policy_published
     extract_records
+
+    return if Feedback.exists?(report_id:, domain:)
 
     save
   end
@@ -33,7 +45,27 @@ class Feedback < ApplicationRecord
     records.any?(&:fully_valid?)
   end
 
+  def dkim_fully_valid?
+    records.all?(&:dkim_valid?)
+  end
+
+  def dkim_partially_valid?
+    records.any?(&:dkim_valid?)
+  end
+
+  def spf_fully_valid?
+    records.all?(&:spf_valid?)
+  end
+
+  def spf_partially_valid?
+    records.any?(&:spf_valid?)
+  end
+
   private
+
+  def add_random_report_id
+    self.report_id = SecureRandom.alphanumeric(30) if report_id.nil?
+  end
 
   def extract_report_id
     self.report_id = raw_content['feedback']['report_metadata']['report_id']
@@ -72,5 +104,33 @@ class Feedback < ApplicationRecord
         record.update_from_hash(raw_record)
       end
     end
+  end
+
+  def extract_from_zip_archive
+    Zip::File.open_buffer(report.download) do |zip|
+      zip.each do |entry|
+        next unless entry.name.match?(/.xml$/)
+
+        self.raw_content = JSON.parse(Crack::XML.parse(entry.get_input_stream.read).to_json)
+        save
+
+        return true
+      end
+    end
+  end
+
+  def extract_from_gzip_archive
+    report.open do |r|
+      gz_file = Zlib::GzipReader.new(r)
+
+      self.raw_content = JSON.parse(Crack::XML.parse(gz_file.read).to_json)
+      save
+    end
+  end
+
+  def extract_from_xml
+    self.raw_content = JSON.parse(Crack::XML.parse(report.download).to_json)
+
+    save
   end
 end

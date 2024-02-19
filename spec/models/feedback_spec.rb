@@ -11,7 +11,7 @@ RSpec.describe Feedback do
   )
 
   describe 'has store the XML content as JSON' do
-    feedback.parse_xml_report
+    feedback.extract_report
 
     it { expect(feedback.raw_content).not_to be_nil }
     it { expect(feedback.raw_content).to be_a Hash }

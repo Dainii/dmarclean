@@ -5,6 +5,7 @@ class Domain < ApplicationRecord
 
   validates :name, presence: true
 
+  # TODO: store this value to avoid calculating it everytimes
   def records_sum
     feedbacks.sum { |feedback| feedback.records.count }
   end

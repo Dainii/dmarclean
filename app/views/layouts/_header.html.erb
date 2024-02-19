@@ -10,10 +10,11 @@
       <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
     </div>
     <nav class="hidden md:flex md:gap-x-11 md:text-sm md:font-semibold md:leading-6 md:text-gray-700">
-      <%= link_to "Home", root_path %>
-      <%= link_to "Domains", domains_path %>
-      <%= link_to "Mailboxes", mailboxes_path %>
-      <a href="#">Settings</a>
+      <%= link_to 'Home', root_path %>
+      <%= link_to 'Domains', domains_path %>
+      <%= link_to 'Mailboxes', mailboxes_path %>
+      <%= link_to 'Upload', new_feedback_upload_path %>
+      <%= link_to 'Jobs', jobs_path %>
     </nav>
     <div class="flex flex-1 items-center justify-end gap-x-8">
       <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">

@@ -13,12 +13,32 @@ class Record < ApplicationRecord
     save
   end
 
+  def dkim_authentication
+    return auth_results.dig('dkim', 'result') if auth_results['dkim'].instance_of?(Hash)
+
+    return auth_results['dkim'].find { |auth| auth['domain'] == feedback.domain.name }['result'] if auth_results['dkim']
+
+    'none'
+  end
+
+  def dkim_alignment
+    policy_evaluated['dkim']
+  end
+
   def dkim_valid?
-    auth_results.dig('dkim', 'result') == 'pass'
+    dkim_alignment == 'pass'
+  end
+
+  def spf_authentication
+    auth_results.dig('spf', 'result')
+  end
+
+  def spf_alignment
+    policy_evaluated['spf']
   end
 
   def spf_valid?
-    auth_results.dig('spf', 'result') == 'pass'
+    spf_alignment == 'pass'
   end
 
   def fully_valid?

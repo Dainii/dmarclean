@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-class ProcessReportJob < ApplicationJob
-  queue_as :default
-
+class ProcessReportJob < BaseJob
   def perform(feedback)
-    feedback.parse_xml_report
+    feedback.extract_report
 
     return if feedback.raw_content.empty?
 

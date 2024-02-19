@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :testforms
+  resources :jobs, only: %i[index show]
+  resources :feedback_uploads, only: %i[new create]
   resources :mailboxes
   resources :domains, only: %i[index show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

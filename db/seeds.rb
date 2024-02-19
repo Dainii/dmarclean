@@ -16,7 +16,7 @@ feedback = Feedback.create!(
     filename: 'report_google.com.xml'
   }
 )
-ProcessReportJob.perform_later(feedback)
+Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
 
 feedback = Feedback.create!(
   report: {
@@ -24,7 +24,7 @@ feedback = Feedback.create!(
     filename: 'report_outlook.com.xml'
   }
 )
-ProcessReportJob.perform_later(feedback)
+Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
 
 feedback = Feedback.create!(
   report: {
@@ -32,4 +32,20 @@ feedback = Feedback.create!(
     filename: 'report_infomaniak.com.xml'
   }
 )
-ProcessReportJob.perform_later(feedback)
+Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
+
+feedback = Feedback.create!(
+  report: {
+    io: Rails.root.join('spec', 'examples', 'reports', 'google.com_domain.test.zip').open,
+    filename: 'google.com_domain.test.zip'
+  }
+)
+Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
+
+feedback = Feedback.create!(
+  report: {
+    io: Rails.root.join('spec', 'examples', 'reports', 'protection.outlook.com_domain.test.xml.gz').open,
+    filename: 'protection.outlook.com_domain.test.xml.gz'
+  }
+)
+Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)

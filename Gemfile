@@ -29,7 +29,7 @@ gem 'stimulus-rails'
 gem 'tailwindcss-rails'
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem 'redis', '>= 4.0.1'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -48,6 +48,13 @@ gem 'bootsnap', require: false
 
 gem 'solid_queue'
 
+# Tools for managing archives
+gem 'rubyzip'
+gem 'zlib'
+
+gem 'activejob-status'
+gem 'securerandom'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -58,9 +65,11 @@ group :development, :test do
   gem 'database_cleaner-active_record'
 
   # Brakeman detects security vulnerabilities in Ruby on Rails applications via static analysis
-  gem 'brakeman'
+  gem 'brakeman', require: false
 
-  gem 'bundler-audit'
+  gem 'bundler-audit', require: false
+
+  gem 'erb_lint', require: false
 
   # rspec-rails is a testing framework for Rails 5+
   gem 'rspec-rails'

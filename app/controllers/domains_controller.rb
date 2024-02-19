@@ -15,6 +15,6 @@ class DomainsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_domain
-    @domain = Domain.includes(feedbacks: :organization).find(params[:id])
+    @domain = Domain.includes(feedbacks: %i[records organization]).find(params[:id])
   end
 end
