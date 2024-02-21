@@ -43,3 +43,6 @@
 
 # RSpec ignore files
 /spec/examples.txt
+
+# Ignore IDE/Editor
+/.vscode/*

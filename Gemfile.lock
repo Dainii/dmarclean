@@ -149,6 +149,7 @@ GEM
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    htmlbeautifier (1.4.3)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -173,6 +174,11 @@ GEM
     marcel (1.0.2)
     mini_mime (1.1.5)
     minitest (5.22.2)
+    mission_control-jobs (0.1.1)
+      importmap-rails
+      rails (~> 7.1)
+      stimulus-rails
+      turbo-rails
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.10)
@@ -380,7 +386,9 @@ DEPENDENCIES
   debug
   dotenv-rails
   erb_lint
+  htmlbeautifier
   importmap-rails
+  mission_control-jobs
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)

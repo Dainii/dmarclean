@@ -2,6 +2,6 @@
 
 module DomainsHelper
   def format_date(date)
-    date.to_fs(:long)
+    date.nil? ? 'Unknown' : date.to_fs(:long)
   end
 end

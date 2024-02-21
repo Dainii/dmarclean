@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class ProcessReportJob < BaseJob
+  def name
+    'Process report'
+  end
+
   def perform(feedback)
     feedback.extract_report
 
@@ -8,7 +12,6 @@ class ProcessReportJob < BaseJob
 
     feedback.extract_data
 
-    feedback.processed = true
-    feedback.save
+    feedback.update(processed: true)
   end
 end

@@ -16,7 +16,7 @@ feedback = Feedback.create!(
     filename: 'report_google.com.xml'
   }
 )
-Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
+ProcessReportJob.perform_later(feedback)
 
 feedback = Feedback.create!(
   report: {
@@ -24,7 +24,7 @@ feedback = Feedback.create!(
     filename: 'report_outlook.com.xml'
   }
 )
-Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
+ProcessReportJob.perform_later(feedback)
 
 feedback = Feedback.create!(
   report: {
@@ -32,7 +32,7 @@ feedback = Feedback.create!(
     filename: 'report_infomaniak.com.xml'
   }
 )
-Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
+ProcessReportJob.perform_later(feedback)
 
 feedback = Feedback.create!(
   report: {
@@ -40,7 +40,7 @@ feedback = Feedback.create!(
     filename: 'google.com_domain.test.zip'
   }
 )
-Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
+ProcessReportJob.perform_later(feedback)
 
 feedback = Feedback.create!(
   report: {
@@ -48,4 +48,4 @@ feedback = Feedback.create!(
     filename: 'protection.outlook.com_domain.test.xml.gz'
   }
 )
-Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
+ProcessReportJob.perform_later(feedback)

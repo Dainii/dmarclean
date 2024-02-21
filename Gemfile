@@ -71,6 +71,8 @@ group :development, :test do
 
   gem 'erb_lint', require: false
 
+  gem "mission_control-jobs"
+
   # rspec-rails is a testing framework for Rails 5+
   gem 'rspec-rails'
 
@@ -100,4 +102,6 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem 'htmlbeautifier'
 end

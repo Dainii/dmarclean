@@ -18,7 +18,7 @@ class Mailbox < ApplicationRecord
             filename: attachment.filename
           }
         )
-        Job.create!(job_id: ProcessReportJob.perform_later(feedback).job_id)
+        ProcessReportJob.perform_later(feedback)
       end
     end
   end

@@ -5,7 +5,7 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-    @jobs = Job.all
+    @jobs = Job.includes(:solid_queue_job).all
   end
 
   # GET /jobs/1
@@ -15,6 +15,6 @@ class JobsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_job
-    @job = Job.find(params[:id])
+    @job = Job.includes(:solid_queue_job).find(params[:id])
   end
 end

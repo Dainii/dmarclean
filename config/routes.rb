@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  mount MissionControl::Jobs::Engine, at: "/mission_control" if ENV["RAILS_ENV"] == "development"
 end

@@ -8,6 +8,6 @@ class FeedbackUpload < ApplicationRecord
   private
 
   def generate_feedbacks
-    Job.create!(job_id: GenerateFeedbacksJob.set(wait: 5.seconds).perform_later(self))
+    GenerateFeedbacksJob.set(wait: 5.seconds).perform_later(self)
   end
 end
