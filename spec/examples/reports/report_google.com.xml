@@ -21,7 +21,7 @@
   </policy_published>
   <record>
     <row>
-      <source_ip>12.34.56.78</source_ip>
+      <source_ip>240.1.2.3</source_ip>
       <count>2</count>
       <policy_evaluated>
         <disposition>none</disposition>

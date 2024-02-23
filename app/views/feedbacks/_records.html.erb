@@ -23,8 +23,8 @@
                   <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
                 </th>
               </tr>
-              <% feedbacks.each do |feedback| %>
-                <%= render partial: 'feedback', locals: { feedback: } %>
+              <% records.each do |record| %>
+                <%= render partial: 'feedbacks/record', locals: { record: } %>
               <% end %>
             </tbody>
           </table>

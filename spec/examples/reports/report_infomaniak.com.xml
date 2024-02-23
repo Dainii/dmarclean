@@ -19,7 +19,7 @@
     </policy_published>
     <record>
         <row>
-            <source_ip>12.12.12.12</source_ip>
+            <source_ip>240.1.2.3</source_ip>
             <count>1</count>
             <policy_evaluated>
                 <disposition>none</disposition>
@@ -43,7 +43,7 @@
     </record>
     <record>
         <row>
-            <source_ip>12.12.12.12</source_ip>
+            <source_ip>240.1.2.3</source_ip>
             <count>1</count>
             <policy_evaluated>
                 <disposition>none</disposition>

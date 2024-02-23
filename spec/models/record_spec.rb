@@ -9,7 +9,7 @@ RSpec.describe Record do
 
   record_hash = {
     'row' => {
-      'source_ip' => '12.34.56.78',
+      'source_ip' => '240.1.2.3',
       'count' => '2',
       'policy_evaluated' => {
         'disposition' => 'none',
@@ -39,7 +39,7 @@ RSpec.describe Record do
     record.update_from_hash(record_hash)
 
     describe 'has a source_ip' do
-      it { expect(record.source_ip).to eq('12.34.56.78') }
+      it { expect(record.source_ip).to eq('240.1.2.3') }
     end
 
     describe 'has a count' do

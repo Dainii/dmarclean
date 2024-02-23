@@ -1,0 +1,4 @@
+<div id="<%= dom_id @feedback %>" class="relative isolate overflow-hidden pt-16">
+  <%= render partial: 'feedbacks/organization', locals: { organization: @feedback.organization, feedback: @feedback } %>
+</div>
+<%= render partial: 'feedbacks/records', locals: { records: @feedback.records } %>

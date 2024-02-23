@@ -3,23 +3,11 @@
     <div class="flex gap-x-6">
       <div class="flex-auto">
         <div class="flex items-start gap-x-3">
-          <div class="text-sm font-medium leading-6 text-gray-900"><%= feedback.organization.name %></div>
-          <% if feedback.dkim_fully_valid? %>
-            <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-green-700 bg-green-50 ring-green-600/20">DKIM</div>
-          <% elsif feedback.dkim_partially_valid? %>
-            <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-yellow-700 bg-yellow-50 ring-yellow-600/20">DKIM</div>
-          <% else %>
-            <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-red-700 bg-red-50 ring-red-600/20">DKIM</div>
-          <% end %>
-          <% if feedback.spf_fully_valid? %>
-            <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-green-700 bg-green-50 ring-green-600/20">SPF</div>
-          <% elsif feedback.spf_partially_valid? %>
-            <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-yellow-700 bg-yellow-50 ring-yellow-600/20">SPF</div>
-          <% else %>
-            <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-red-700 bg-red-50 ring-red-600/20">SPF</div>
-          <% end %>
+          <div class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-100"><%= feedback.organization.name %></div>
+          <%= render partial: 'domains/validity_badge', locals: { fully_valid: feedback.dkim_fully_valid?, partially_valid: feedback.dkim_partially_valid?, name: 'DKIM' } %>
+          <%= render partial: 'domains/validity_badge', locals: { fully_valid: feedback.spf_fully_valid?, partially_valid: feedback.spf_partially_valid?, name: 'SPF' } %>
         </div>
-        <div class="mt-1 text-xs leading-5 text-gray-500"><%= source_ip_list(feedback) %></div>
+        <div class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= source_ip_list(feedback) %></div>
       </div>
     </div>
     <div class="absolute bottom-0 right-full h-px w-screen bg-gray-100"></div>
@@ -27,8 +15,8 @@
   </td>
   <td class="py-5 text-right">
     <div class="flex justify-end">
-      <a href="#" class="text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500">View<span class="hidden sm:inline"> feedback</span><span class="sr-only">, invoice #00012, Reform</span></a>
+      <%= link_to 'View this feedback', [feedback.domain, feedback], class: 'text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500' %>
     </div>
-    <div class="mt-1 text-xs leading-5 text-gray-500">Report-ID <span class="text-gray-900"><%= feedback.report_id %></span></div>
+    <div class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">Report-ID <span class="text-gray-900 dark:text-gray-200"><%= feedback.report_id %></span></div>
   </td>
 </tr>

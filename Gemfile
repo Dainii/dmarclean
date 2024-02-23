@@ -31,9 +31,6 @@ gem 'tailwindcss-rails'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '>= 4.0.1'
 
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
 # Really simple JSON and XML parsing, ripped from Merb and Rails.
 gem 'crack'
 
@@ -46,17 +43,24 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+# Database-backed Active Job backend.
 gem 'solid_queue'
 
-# Tools for managing archives
+# rubyzip is a ruby module for reading and writing zip files
 gem 'rubyzip'
+
+# Ruby interface for the zlib compression/decompression library
 gem 'zlib'
 
+# Monitor your jobs
 gem 'activejob-status'
+
+# Interface for secure random number generator.
 gem 'securerandom'
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+# Dnsruby is a pure Ruby DNS client library which implements a stub resolver.
+# It aims to comply with all DNS RFCs, including DNSSEC NSEC3 support.
+gem 'dnsruby'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -71,7 +75,7 @@ group :development, :test do
 
   gem 'erb_lint', require: false
 
-  gem "mission_control-jobs"
+  gem 'mission_control-jobs'
 
   # rspec-rails is a testing framework for Rails 5+
   gem 'rspec-rails'
