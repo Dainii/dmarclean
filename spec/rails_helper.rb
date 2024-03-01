@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'simplecov'
+require 'simplecov-cobertura'
 
 SimpleCov.start 'rails' do
   formatter SimpleCov::Formatter::CoberturaFormatter if ENV['CI']
