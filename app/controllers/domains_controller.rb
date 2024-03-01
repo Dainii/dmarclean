@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DomainsController < ApplicationController
+class DomainsController < AuthenticatedController
   before_action :set_domain, only: %i[show]
 
   # GET /domains

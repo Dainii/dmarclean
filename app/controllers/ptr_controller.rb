@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PtrController < ApplicationController
+class PtrController < AuthenticatedController
   # Get /dns/1
   def show
     @ip_addres = params[:id]

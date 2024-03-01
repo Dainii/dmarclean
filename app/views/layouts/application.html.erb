@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dmarclean</title>
+    <title><%= @page_title || 'DMARClean' %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +10,15 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="bg-white dark:bg-slate-800">
-    <%= render partial: 'layouts/header' %>
+    <% if rodauth.logged_in? %>
+      <%= render partial: 'layouts/header' %>
+    <% end %>
+    <% if notice %>
+      <div class="alert alert-success"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-danger"><%= alert %></div>
+    <% end %>
     <main>
       <%= yield %>
     </main>

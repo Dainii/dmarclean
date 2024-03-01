@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-class FeedbackUploadsController < ApplicationController
+class FeedbackUploadsController < AuthenticatedController
   # GET /feedback_uploads/new
   def new
     @feedback_upload = FeedbackUpload.new
   end
-
-  # GET /feedback_uploads/1/edit
-  def edit; end
 
   # POST /feedback_uploads
   def create

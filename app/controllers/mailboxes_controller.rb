@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MailboxesController < ApplicationController
+class MailboxesController < AuthenticatedController
   before_action :set_mailbox, only: %i[show edit update destroy]
 
   # GET /mailboxes

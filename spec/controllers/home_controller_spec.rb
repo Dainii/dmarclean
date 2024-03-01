@@ -9,7 +9,7 @@ RSpec.describe HomeController do
         get :index
       end
 
-      it { is_expected.to respond_with(200) }
+      it { is_expected.to respond_with(302) }
     end
   end
 end

@@ -23,6 +23,8 @@ Metrics/ClassLength:
 
 Metrics/BlockLength:
   Max: 40
+  Exclude:
+    - 'app/misc/*.rb'
 
 Metrics/AbcSize:
   Enabled: false
