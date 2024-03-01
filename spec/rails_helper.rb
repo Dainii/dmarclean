@@ -3,6 +3,8 @@
 require 'simplecov'
 
 SimpleCov.start 'rails' do
+  formatter SimpleCov::Formatter::CoberturaFormatter if ENV['CI']
+
   add_filter 'vendor'
 end
 

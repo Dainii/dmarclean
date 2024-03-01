@@ -101,6 +101,7 @@ group :development, :test do
   gem 'shoulda-matchers'
 
   gem 'simplecov', require: false
+  gem 'simplecov-cobertura', require: false
 
   gem 'smtp_mock', require: false
 end
