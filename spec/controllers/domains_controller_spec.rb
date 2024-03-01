@@ -9,7 +9,7 @@ RSpec.describe DomainsController do
         get :index
       end
 
-      it { is_expected.to respond_with(200) }
+      it { is_expected.to respond_with(302) }
     end
 
     describe 'GET /domains/:id' do
@@ -17,7 +17,7 @@ RSpec.describe DomainsController do
         get :show, params: { id: Domain.create!(name: 'controller.domain').id }
       end
 
-      it { is_expected.to respond_with(200) }
+      it { is_expected.to respond_with(302) }
       it { is_expected.to use_before_action(:set_domain) }
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FeedbacksController < ApplicationController
+class FeedbacksController < AuthenticatedController
   before_action :set_feedback, only: %i[show]
 
   # Get /domains/1/feedbacks/1

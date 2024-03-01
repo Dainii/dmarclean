@@ -34,9 +34,6 @@ gem 'redis', '>= 4.0.1'
 # Really simple JSON and XML parsing, ripped from Merb and Rails.
 gem 'crack'
 
-# Autoload dotenv in Rails
-gem 'dotenv-rails'
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
@@ -58,6 +55,14 @@ gem 'activejob-status'
 # Interface for secure random number generator.
 gem 'securerandom'
 
+# Provides Rails integration for Rodauth.
+gem 'omniauth-saml'
+gem 'rodauth-omniauth'
+gem 'rodauth-rails'
+gem 'rotp'
+gem 'rqrcode'
+gem 'webauthn'
+
 # Dnsruby is a pure Ruby DNS client library which implements a stub resolver.
 # It aims to comply with all DNS RFCs, including DNSSEC NSEC3 support.
 gem 'dnsruby'
@@ -67,6 +72,9 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
 
   gem 'database_cleaner-active_record'
+
+  # Autoload dotenv in Rails
+  gem 'dotenv-rails'
 
   # Brakeman detects security vulnerabilities in Ruby on Rails applications via static analysis
   gem 'brakeman', require: false

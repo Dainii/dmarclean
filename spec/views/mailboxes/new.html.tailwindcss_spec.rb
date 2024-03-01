@@ -6,14 +6,7 @@ RSpec.describe 'mailboxes/new' do
   before do
     assign(
       :mailbox,
-      Mailbox.create!(
-        mail_address: 'mail@domain.test',
-        password: 'password',
-        server: 'imap@domain.test',
-        port: 465,
-        verify_ssl: true,
-        disable_ssl_tls: false
-      )
+      Mailbox.new
     )
   end
 

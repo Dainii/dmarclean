@@ -10,9 +10,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_21_072750) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_26_151400) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
+
+  create_table "account_identities", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.json "info", default: "{}"
+    t.json "credentials", default: "{}"
+    t.json "extra", default: "{}"
+    t.index ["account_id"], name: "index_account_identities_on_account_id"
+    t.index ["provider", "uid"], name: "index_account_identities_on_provider_and_uid", unique: true
+  end
+
+  create_table "account_login_change_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "login", null: false
+    t.datetime "deadline", null: false
+  end
+
+  create_table "account_otp_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.integer "num_failures", default: 0, null: false
+    t.datetime "last_use", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
+  create_table "account_password_reset_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "deadline", null: false
+    t.datetime "email_last_sent", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
+  create_table "account_recovery_codes", primary_key: ["id", "code"], force: :cascade do |t|
+    t.bigint "id", null: false
+    t.string "code", null: false
+  end
+
+  create_table "account_remember_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "deadline", null: false
+  end
+
+  create_table "account_sms_codes", force: :cascade do |t|
+    t.string "phone_number", null: false
+    t.integer "num_failures"
+    t.string "code"
+    t.datetime "code_issued_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
+  create_table "account_verification_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "requested_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "email_last_sent", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
+  create_table "account_webauthn_keys", primary_key: ["account_id", "webauthn_id"], force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "webauthn_id", null: false
+    t.string "public_key", null: false
+    t.integer "sign_count", null: false
+    t.datetime "last_use", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.index ["account_id"], name: "index_account_webauthn_keys_on_account_id"
+  end
+
+  create_table "account_webauthn_user_ids", force: :cascade do |t|
+    t.string "webauthn_id", null: false
+  end
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer "status", default: 1, null: false
+    t.citext "email", null: false
+    t.string "password_hash"
+    t.index ["email"], name: "index_accounts_on_email", unique: true, where: "(status = ANY (ARRAY[1, 2]))"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +170,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_072750) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_organizations_on_name", unique: true
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_people_on_account_id"
   end
 
   create_table "records", force: :cascade do |t|
@@ -205,11 +287,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_072750) do
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 
+  add_foreign_key "account_identities", "accounts", on_delete: :cascade
+  add_foreign_key "account_login_change_keys", "accounts", column: "id"
+  add_foreign_key "account_otp_keys", "accounts", column: "id"
+  add_foreign_key "account_password_reset_keys", "accounts", column: "id"
+  add_foreign_key "account_recovery_codes", "accounts", column: "id"
+  add_foreign_key "account_remember_keys", "accounts", column: "id"
+  add_foreign_key "account_sms_codes", "accounts", column: "id"
+  add_foreign_key "account_verification_keys", "accounts", column: "id"
+  add_foreign_key "account_webauthn_keys", "accounts"
+  add_foreign_key "account_webauthn_user_ids", "accounts", column: "id"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "feedbacks", "domains"
   add_foreign_key "feedbacks", "organizations"
   add_foreign_key "jobs", "solid_queue_jobs"
+  add_foreign_key "people", "accounts"
   add_foreign_key "records", "feedbacks"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
