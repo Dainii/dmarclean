@@ -11,7 +11,7 @@ RSpec.describe 'feedback_uploads/new' do
     render
 
     assert_select 'form[action=?][method=?]', feedback_uploads_path, 'post' do
-      assert_select 'input[name=?]', 'feedback_upload[archives]'
+      assert_select 'input[name=?]', 'feedback_upload[archives][]'
     end
   end
 end

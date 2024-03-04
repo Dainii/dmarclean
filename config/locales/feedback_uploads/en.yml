@@ -4,5 +4,5 @@ en:
       success: Archives uploaded
     form:
       error_message: prohibited this feedback_upload from being saved
-    index:
+    new:
       title: Upload feedbacks

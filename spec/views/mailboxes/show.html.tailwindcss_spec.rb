@@ -17,7 +17,7 @@ RSpec.describe 'mailboxes/show' do
   end
 
   describe 'renders attributes in <p>' do
-    render
+    before { render }
 
     it { expect(rendered).to match(/Address/) }
     it { expect(rendered).to match(/Server/) }
