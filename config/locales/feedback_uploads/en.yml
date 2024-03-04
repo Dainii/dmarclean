@@ -1,0 +1,8 @@
+en:
+  feedback_uploads:
+    create:
+      success: Archives uploaded
+    form:
+      error_message: prohibited this feedback_upload from being saved
+    new:
+      title: Upload feedbacks

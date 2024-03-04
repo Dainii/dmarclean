@@ -57,6 +57,7 @@ gem 'securerandom'
 
 # Provides Rails integration for Rodauth.
 gem 'omniauth-saml'
+gem 'rodauth-i18n'
 gem 'rodauth-omniauth'
 gem 'rodauth-rails'
 gem 'rotp'
@@ -102,8 +103,6 @@ group :development, :test do
 
   gem 'simplecov', require: false
   gem 'simplecov-cobertura', require: false
-
-  gem 'smtp_mock', require: false
 end
 
 group :development do
@@ -116,5 +115,11 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
+  # Ever wondered which translations are being looked up by Rails, a gem, or simply your app? Wonder no more!
+  gem 'i18n-debug'
+
   gem 'htmlbeautifier'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end

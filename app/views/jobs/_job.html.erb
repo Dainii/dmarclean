@@ -1,6 +1,6 @@
 <div id="<%= dom_id job %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
+    <strong class="block font-medium mb-1"><%= t('.job_status') %></strong>
     <%= job_status(job.status) %>
   </p>
   <% if action_name != "show" %>

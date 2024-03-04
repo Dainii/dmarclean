@@ -1,0 +1,13 @@
+fr:
+  feedbacks:
+    organization:
+      report_id: Report ID
+    record:
+      dns_placeholder: En cours...
+      count: Nombre
+    records:
+      recent_activity: Activité récente
+      table_head_amount: Quantité
+      table_head_client: Client
+      table_head_more_details: Plus de détails
+      table_content_today: Aujourd'hui

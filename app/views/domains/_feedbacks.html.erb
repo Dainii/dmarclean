@@ -2,7 +2,7 @@
   <!-- Recent activity table -->
   <div>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mx-auto max-w-2xl text-base font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none">Recent activity</h2>
+      <h2 class="mx-auto max-w-2xl text-base font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none"><%= t('.recent_activity') %></h2>
     </div>
     <div class="mt-6 overflow-hidden border-t border-gray-100 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -10,15 +10,15 @@
           <table class="w-full text-left">
             <thead class="sr-only">
               <tr>
-                <th>Amount</th>
-                <th class="hidden sm:table-cell">Client</th>
-                <th>More details</th>
+                <th><%= t('.table_head_amount') %></th>
+                <th class="hidden sm:table-cell"><%= t('.table_head_client') %></th>
+                <th><%= t('.table_head_more_details') %></th>
               </tr>
             </thead>
             <tbody>
               <tr class="text-sm leading-6 text-gray-900">
                 <th scope="colgroup" colspan="3" class="relative isolate py-2 font-semibold">
-                  <time datetime="2023-03-22">Today</time>
+                  <time datetime="2023-03-22"><%= t('.table_content_today') %></time>
                   <div class="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
                   <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
                 </th>

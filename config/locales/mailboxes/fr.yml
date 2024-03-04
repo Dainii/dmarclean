@@ -1,0 +1,41 @@
+fr:
+  activerecord:
+    attributes:
+      mailbox:
+        mail_address: Adresse email
+        password: Password
+        server: Adresse du serveur
+        port: Numéro de port
+        verify_ssl: Vérifier SSL
+        disable_ssl_tls: Désactiver SSL/TLS
+  mailboxes:
+    create:
+      success: Boite email crée avec succès !
+    update:
+      success: Boite email mise à jour !
+    destroy:
+      destsuccessroy: Boite email supprimée !
+    form:
+      error_message: ont empêché l'upload
+    mailbox:
+      address: Adresse
+      server: Server
+      port: Port
+      verify_ssl: Verifie le SSL
+      disable_ssl_tls: Désactive SSL/TLS
+      link_show_mailbox: Voir cette boite email
+      link_edit_mailbox: Modifier cette boite email
+    edit:
+      title: Modifier cette boite email
+      link_show_mailbox: Voir cette boite email
+      link_back_to_mailboxes: Retour aux boites email
+    index:
+      title: Boites email
+      link_new_mailbox: Nouvelle boite email
+    new:
+      title: Nouvelle boîte email
+      link_back_to_mailboxes: Retour aux boites email
+    show:
+      link_edit_mailbox: Modifier cette boite email
+      link_destroy_mailbox: Supprimer cette boite email
+      link_back_to_mailboxes: Retour aux boites email

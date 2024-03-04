@@ -5,7 +5,7 @@
         <div class="flex items-start gap-x-3">
           <div class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-100"><%= record.source_ip %>
             <%= turbo_frame_tag "dns_#{record.source_ip}", src: ptr_lookup_path(record.source_ip), lazy: true do %>
-              querying ...
+              <%= t('.dns_placeholder') %>
             <% end %>
           </div>
           <%= render partial: 'domains/validity_badge', locals: { fully_valid: record.dkim_valid?, partially_valid: false, name: 'DKIM' } %>
@@ -17,6 +17,6 @@
     <div class="absolute bottom-0 left-0 h-px w-screen bg-gray-100"></div>
   </td>
   <td class="py-5 text-right">
-    <div class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">Count <span class="text-gray-900 dark:text-gray-200"><%= record.count %></span></div>
+    <div class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= t('.count') %> <span class="text-gray-900 dark:text-gray-200"><%= record.count %></span></div>
   </td>
 </tr>

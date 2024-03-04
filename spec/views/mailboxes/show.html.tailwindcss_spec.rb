@@ -16,10 +16,11 @@ RSpec.describe 'mailboxes/show' do
     )
   end
 
-  it 'renders attributes in <p>' do
-    render
-    expect(rendered).to match(/Address/)
-    expect(rendered).to match(/Server/)
-    expect(rendered).to match(/Port/)
+  describe 'renders attributes in <p>' do
+    before { render }
+
+    it { expect(rendered).to match(/Address/) }
+    it { expect(rendered).to match(/Server/) }
+    it { expect(rendered).to match(/Port/) }
   end
 end

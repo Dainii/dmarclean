@@ -1,0 +1,21 @@
+fr:
+  domains:
+    feedback:
+      report_id: Report ID
+    feedbacks:
+      recent_activity: Evènements récents
+      table_head_amount: Quantité
+      table_head_client: Client
+      table_head_more_details: Plus de détails
+      table_content_today: Aujourd'hui
+    header:
+      last_7_days: 7 derniers jours
+      last_30_days: 30 derniers jours
+      all_time: Tous
+    stats:
+      total_feedbacks: Total de feedbacks
+      total_records: Total de records
+    index:
+      updated_at: Mis à jour le
+      created_at: Créé le
+      complete_badge: Complet

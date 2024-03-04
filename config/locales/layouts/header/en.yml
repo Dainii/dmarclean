@@ -1,0 +1,13 @@
+en:
+  layouts:
+    header:
+      home: Home
+      domains: Domains
+      mailboxes: Mailboxes
+      upload: Upload
+      jobs: Jobs
+      open_menu: Open main menu
+      view_notifications: View notifications
+      your_profile: Your profile
+      close_menu: Close menu
+      company_name: Your Company
