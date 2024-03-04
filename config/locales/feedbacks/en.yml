@@ -1,0 +1,13 @@
+en:
+  feedbacks:
+    organization:
+      report_id: Report ID
+    record:
+      dns_placeholder: Querying...
+      count: Count
+    records:
+      recent_activity: Recent activity
+      table_head_amount: Amount
+      table_head_client: Client
+      table_head_more_details: More details
+      table_content_today: Today

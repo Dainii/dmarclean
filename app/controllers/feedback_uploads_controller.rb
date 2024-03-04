@@ -11,7 +11,7 @@ class FeedbackUploadsController < AuthenticatedController
     @feedback_upload = FeedbackUpload.new(feedback_upload_params)
 
     if @feedback_upload.save
-      redirect_to new_feedback_upload_path, notice: 'Archvies uploaded'
+      redirect_to new_feedback_upload_path, notice: t('.success')
     else
       render :new, status: :unprocessable_entity
     end

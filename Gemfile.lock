@@ -86,6 +86,10 @@ GEM
     awrence (1.2.1)
     base64 (0.2.0)
     bcrypt (3.1.20)
+    better_errors (2.10.1)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
+      rouge (>= 1.0.0)
     better_html (2.0.2)
       actionview (>= 6.0)
       activesupport (>= 6.0)
@@ -96,6 +100,8 @@ GEM
     bigdecimal (3.1.6)
     bindata (2.5.0)
     bindex (0.8.1)
+    binding_of_caller (1.0.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     brakeman (6.1.2)
@@ -123,6 +129,7 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    debug_inspector (1.2.0)
     diff-lcs (1.5.1)
     dnsruby (1.70.0)
       simpleidn (~> 0.2.1)
@@ -132,26 +139,6 @@ GEM
       dotenv (= 3.1.0)
       railties (>= 6.1)
     drb (2.2.1)
-    dry-core (1.0.1)
-      concurrent-ruby (~> 1.0)
-      zeitwerk (~> 2.6)
-    dry-inflector (1.0.0)
-    dry-logic (1.5.0)
-      concurrent-ruby (~> 1.0)
-      dry-core (~> 1.0, < 2)
-      zeitwerk (~> 2.6)
-    dry-struct (1.6.0)
-      dry-core (~> 1.0, < 2)
-      dry-types (>= 1.7, < 2)
-      ice_nine (~> 0.11)
-      zeitwerk (~> 2.6)
-    dry-types (1.7.2)
-      bigdecimal (~> 3.0)
-      concurrent-ruby (~> 1.0)
-      dry-core (~> 1.0)
-      dry-inflector (~> 1.0)
-      dry-logic (~> 1.4)
-      zeitwerk (~> 2.6)
     erb_lint (0.5.0)
       activesupport
       better_html (>= 2.0.1)
@@ -166,7 +153,8 @@ GEM
     htmlbeautifier (1.4.3)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    ice_nine (0.11.2)
+    i18n-debug (1.2.0)
+      i18n (< 2)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -301,6 +289,9 @@ GEM
     rodauth (2.33.0)
       roda (>= 2.6.0)
       sequel (>= 4)
+    rodauth-i18n (0.7.1)
+      i18n (~> 1.0)
+      rodauth (~> 2.19)
     rodauth-model (0.2.1)
       rodauth (~> 2.0)
     rodauth-omniauth (0.3.3)
@@ -315,6 +306,7 @@ GEM
       sequel-activerecord_connection (~> 1.1)
       tilt
     rotp (6.3.0)
+    rouge (4.2.0)
     rqrcode (2.2.0)
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
@@ -395,8 +387,6 @@ GEM
     simpleidn (0.2.1)
       unf (~> 0.1.4)
     smart_properties (1.17.0)
-    smtp_mock (1.4.0)
-      dry-struct (~> 1.4)
     solid_queue (0.2.1)
       rails (~> 7.1)
     stimulus-rails (1.3.3)
@@ -462,6 +452,8 @@ PLATFORMS
 
 DEPENDENCIES
   activejob-status
+  better_errors
+  binding_of_caller
   bootsnap
   brakeman
   bundler-audit
@@ -472,6 +464,7 @@ DEPENDENCIES
   dotenv-rails
   erb_lint
   htmlbeautifier
+  i18n-debug
   importmap-rails
   mission_control-jobs
   omniauth-saml
@@ -480,6 +473,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.3)
   redis (>= 4.0.1)
+  rodauth-i18n
   rodauth-omniauth
   rodauth-rails
   rotp
@@ -495,7 +489,6 @@ DEPENDENCIES
   shoulda-matchers
   simplecov
   simplecov-cobertura
-  smtp_mock
   solid_queue
   stimulus-rails
   tailwindcss-rails

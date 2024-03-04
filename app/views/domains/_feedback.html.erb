@@ -17,6 +17,6 @@
     <div class="flex justify-end">
       <%= link_to 'View this feedback', [feedback.domain, feedback], class: 'text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500' %>
     </div>
-    <div class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">Report-ID <span class="text-gray-900 dark:text-gray-200"><%= feedback.report_id %></span></div>
+    <div class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= t('.report_id') %><span class="text-gray-900 dark:text-gray-200"><%= feedback.report_id %></span></div>
   </td>
 </tr>

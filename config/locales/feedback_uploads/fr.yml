@@ -1,0 +1,8 @@
+en:
+  feedback_uploads:
+    create:
+      success: Archives envoyées
+    form:
+      error_message: ont empêché l'upload
+    index:
+      title: Upload de feedback

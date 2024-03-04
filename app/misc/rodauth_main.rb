@@ -10,7 +10,7 @@ class RodauthMain < Rodauth::Rails::Auth
            :login, :logout, :remember, :reset_password, :change_password,
            :change_password_notify, :change_login, :verify_login_change,
            :close_account, :otp, :sms_codes, :webauthn, :recovery_codes,
-           :internal_request, :omniauth
+           :internal_request, :omniauth, :i18n
 
     if ENV.fetch('ENABLE_SAML_AUTH', false) == 'true'
       # See the Rodauth documentation for the list of available config options:
@@ -132,7 +132,9 @@ class RodauthMain < Rodauth::Rails::Auth
     # no_matching_login_message "user with this email address doesn't exist"
     # already_an_account_with_this_login_message "user with this email address already exists"
     # password_too_short_message { "needs to have at least #{password_minimum_length} characters" }
-    # login_does_not_meet_requirements_message { "invalid email#{", #{login_requirement_message}" if login_requirement_message}" }
+    # login_does_not_meet_requirements_message {
+    #  "invalid email#{", #{login_requirement_message}" if login_requirement_message}"
+    # }
 
     # Passwords shorter than 8 characters are considered weak according to OWASP.
     password_minimum_length 8

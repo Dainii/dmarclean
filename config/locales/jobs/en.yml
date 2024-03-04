@@ -1,0 +1,7 @@
+en:
+  jobs:
+    job:
+      job_status: Job status
+    index:
+      scheduled_at: Scheduled at
+      finished_at: Finished at

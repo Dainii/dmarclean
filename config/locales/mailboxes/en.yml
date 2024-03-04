@@ -1,0 +1,41 @@
+en:
+  activerecord:
+    attributes:
+      mailbox:
+        mail_address: Mailbox address
+        password: Password
+        server: Server address
+        port: Port number
+        verify_ssl: Verify SSL
+        disable_ssl_tls: Disable SSL/TLS
+  mailboxes:
+    create:
+      success: Mailbox was successfully created !
+    update:
+      success: Mailbox was successfully updated !
+    destroy:
+      success: Mailbox was successfully destroyed !
+    form:
+      error_message: prohibited this mailbox from being saved
+    mailbox:
+      address: Address
+      server: Server
+      port: Port
+      verify_ssl: Verify SSL
+      disable_ssl_tls: Disable SSL/TLS
+      link_show_mailbox: Show this mailbox
+      link_edit_mailbox: Edit this mailbox
+    edit:
+      title: Editing mailbox
+      link_show_mailbox: Show this mailbox
+      link_back_to_mailboxes: Back to mailboxes
+    index:
+      title: Mailboxes
+      link_new_mailbox: New mailbox
+    new:
+      title: New mailbox
+      link_back_to_mailboxes: Back to mailboxes
+    show:
+      link_edit_mailbox: Edit this mailbox
+      link_destroy_mailbox: Destroy this mailbox
+      link_back_to_mailboxes: Back to mailboxes

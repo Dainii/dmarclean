@@ -7,6 +7,9 @@ SimpleCov.start 'rails' do
   formatter SimpleCov::Formatter::CoberturaFormatter if ENV['CI']
 
   add_filter 'vendor'
+
+  # TODO: Add some tests for SAML
+  add_filter 'app/misc'
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
