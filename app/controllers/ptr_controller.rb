@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PtrController < AuthenticatedController
-  # Get /dns/1
+  # Get /ptr/1
   def show
     @ip_addres = params[:id]
     @ptr = Ptr.resolve(params[:id])

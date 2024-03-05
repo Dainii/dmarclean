@@ -2,28 +2,25 @@
 
 require 'rails_helper'
 
-RSpec.describe DomainsController do
+RSpec.describe FeedbacksController do
   context 'with an unauthenticated user' do
-    describe 'GET /domains' do
+    let(:domain) { Domain.create!(name: 'controller.domain') }
+    let(:feedback) { Feedback.create!(domain:) }
+
+    describe 'GET /domains/:domain_id/feedbacks/:id' do
       before do
-        get :index
+        get :show, params: { domain_id: domain.id, id: feedback.id }
       end
 
       it { is_expected.to respond_with(302) }
-    end
-
-    describe 'GET /domains/:id' do
-      before do
-        get :show, params: { id: Domain.create!(name: 'controller.domain').id }
-      end
-
-      it { is_expected.to respond_with(302) }
-      it { is_expected.to use_before_action(:set_domain) }
+      it { is_expected.to use_before_action(:set_feedback) }
     end
   end
 
   context 'with an authenticated user' do
     let(:account) { Account.create!(email: 'user@example.com', password: 'secret123', status: 2) }
+    let(:domain) { Domain.create!(name: 'controller.domain') }
+    let(:feedback) { Feedback.create!(domain:) }
 
     before do
       sign_in(account)
@@ -34,21 +31,13 @@ RSpec.describe DomainsController do
       @controller.rodauth.login_session('secret123') # rubocop:disable RSpec/InstanceVariable
     end
 
-    describe 'GET /' do
+    describe 'GET /domains/:domain_id/feedbacks/:id' do
       before do
-        get :index
+        get :show, params: { domain_id: domain.id, id: feedback.id }
       end
 
       it { is_expected.to respond_with(200) }
-    end
-
-    describe 'GET /domains/:id' do
-      before do
-        get :show, params: { id: Domain.create!(name: 'controller.domain').id }
-      end
-
-      it { is_expected.to respond_with(200) }
-      it { is_expected.to use_before_action(:set_domain) }
+      it { is_expected.to use_before_action(:set_feedback) }
     end
   end
 end
