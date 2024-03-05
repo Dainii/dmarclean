@@ -10,6 +10,9 @@ SimpleCov.start 'rails' do
 
   # TODO: Add some tests for SAML
   add_filter 'app/misc'
+
+  # TODO: Should test the mailer one day
+  add_filter 'app/mailers'
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'

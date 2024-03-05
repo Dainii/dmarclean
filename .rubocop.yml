@@ -50,6 +50,9 @@ Rails/FilePath:
 RSpec/ImplicitSubject:
   EnforcedStyle: single_statement_only
 
+RSpec/NestedGroups:
+  Max: 4
+
 RSpec/ContextWording:
   Prefixes:
     - when

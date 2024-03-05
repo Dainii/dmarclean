@@ -69,4 +69,70 @@ RSpec.describe Feedback do
     it { is_expected.to belong_to(:organization).optional(true) }
     it { is_expected.to have_many(:records).dependent(:destroy) }
   end
+
+  context 'with a .gz file' do
+    gz_feedback = described_class.create(
+      report: {
+        io: Rails.root.join('spec', 'examples', 'reports', 'protection.outlook.com_domain.test.xml.gz').open,
+        filename: 'protection.outlook.com_domain.test.xml.gz'
+      }
+    )
+
+    describe 'has store the XML content as JSON' do
+      gz_feedback.extract_report
+
+      it { expect(gz_feedback.raw_content).not_to be_nil }
+      it { expect(gz_feedback.raw_content).to be_a Hash }
+    end
+
+    describe 'has a report id' do
+      gz_feedback.extract_data
+
+      it { expect(gz_feedback.report_id).to eq('e3354694e3744e8ea71085edc0d79e28') }
+    end
+  end
+
+  context 'with a zip file' do
+    zip_feedback = described_class.create(
+      report: {
+        io: Rails.root.join('spec', 'examples', 'reports', 'google.com_domain.test.zip').open,
+        filename: 'google.com_domain.test.zip'
+      }
+    )
+
+    describe 'has store the XML content as JSON' do
+      zip_feedback.extract_report
+
+      it { expect(zip_feedback.raw_content).not_to be_nil }
+      it { expect(zip_feedback.raw_content).to be_a Hash }
+    end
+
+    describe 'has a report id' do
+      zip_feedback.extract_data
+
+      it { expect(zip_feedback.report_id).to eq('7533185181109211119') }
+    end
+  end
+
+  context 'with a multiple records xml file' do
+    xml_feedback = described_class.create(
+      report: {
+        io: Rails.root.join('spec', 'examples', 'reports', 'report_infomaniak.com.xml').open,
+        filename: 'report_infomaniak.com.xml'
+      }
+    )
+
+    describe 'has store the XML content as JSON' do
+      xml_feedback.extract_report
+
+      it { expect(xml_feedback.raw_content).not_to be_nil }
+      it { expect(xml_feedback.raw_content).to be_a Hash }
+    end
+
+    describe 'has a report id' do
+      xml_feedback.extract_data
+
+      it { expect(xml_feedback.report_id).to eq('infomaniak.domain:1677895201') }
+    end
+  end
 end

@@ -16,4 +16,6 @@ class BaseJob < ApplicationJob
   def name
     'Undefined'
   end
+
+  def perform; end
 end
