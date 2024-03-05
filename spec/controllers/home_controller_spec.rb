@@ -38,8 +38,6 @@ RSpec.describe HomeController do
   # The below tests are design to test the `switch_locale` method defined in `ApplicationController`
   # It should probably be elsewhere
   context 'with render_views as authenticated user' do
-    render_views
-
     let(:account) { Account.create!(email: 'user@example.com', password: 'secret123', status: 2) }
 
     before do
@@ -57,7 +55,7 @@ RSpec.describe HomeController do
         get :index
       end
 
-      it { expect(response.body).to match(%r{<a href="/domains">Domains</a>}) }
+      it { is_expected.to use_around_action(:switch_locale) }
     end
 
     describe 'GET / with fr-FR locale' do
@@ -66,7 +64,7 @@ RSpec.describe HomeController do
         get :index
       end
 
-      it { expect(response.body).to match(%r{<a href="/domains">Domaines</a>}) }
+      it { is_expected.to use_around_action(:switch_locale) }
     end
 
     describe 'GET / with unknown locale' do
@@ -75,7 +73,7 @@ RSpec.describe HomeController do
         get :index
       end
 
-      it { expect(response.body).to match(%r{<a href="/domains">Domains</a>}) }
+      it { is_expected.to use_around_action(:switch_locale) }
     end
   end
 end

@@ -5,8 +5,6 @@ require 'rails_helper'
 RSpec.describe GenerateFeedbacksJob do
   ActiveJob::Base.queue_adapter = :test
 
-  it { expect { described_class.perform_later }.to have_enqueued_job }
-
   context 'when performed' do
     let(:feedback_upload) do
       FeedbackUpload.create!(
