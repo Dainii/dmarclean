@@ -43,6 +43,9 @@ gem 'bootsnap', require: false
 # Database-backed Active Job backend.
 gem 'solid_queue'
 
+# Autoload dotenv in Rails
+gem 'dotenv-rails'
+
 # rubyzip is a ruby module for reading and writing zip files
 gem 'rubyzip'
 
@@ -77,9 +80,6 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
 
   gem 'database_cleaner-active_record'
-
-  # Autoload dotenv in Rails
-  gem 'dotenv-rails'
 
   # Brakeman detects security vulnerabilities in Ruby on Rails applications via static analysis
   gem 'brakeman', require: false
