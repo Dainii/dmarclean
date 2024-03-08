@@ -1,34 +1,29 @@
-<div class="space-y-16 py-16 xl:space-y-20">
-  <!-- Recent activity table -->
-  <div>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mx-auto max-w-2xl text-base font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none"><%= t('.recent_activity') %></h2>
+<div class="px-4 sm:px-6 lg:px-8 space-y-16 py-16 xl:space-y-20">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-gray-300"><%= t('.title') %></h1>
+      <p class="mt-2 text-sm text-gray-700 dark:text-gray-500"><%= t('.description') %></p>
     </div>
-    <div class="mt-6 overflow-hidden border-t border-gray-100 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-          <table class="w-full text-left">
-            <thead class="sr-only">
-              <tr>
-                <th><%= t('.table_head_amount') %></th>
-                <th class="hidden sm:table-cell"><%= t('.table_head_client') %></th>
-                <th><%= t('.table_head_more_details') %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="text-sm leading-6 text-gray-900">
-                <th scope="colgroup" colspan="3" class="relative isolate py-2 font-semibold">
-                  <time datetime="2023-03-22"><%= t('.table_content_today') %></time>
-                  <div class="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
-                  <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
-                </th>
-              </tr>
-              <% records.each do |record| %>
-                <%= render partial: 'feedbacks/record', locals: { record: } %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+  </div>
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 sm:pl-0"><%= t('.table_head_source') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300"><%= t('.table_head_dmarc_status') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300"><%= t('.table_head_dkim_status') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300"><%= t('.table_head_spf_status') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300"><%= t('.table_head_volume') %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white dark:bg-slate-800">
+            <% records.each do |record| %>
+              <%= render partial: 'feedbacks/record', locals: { record: } %>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

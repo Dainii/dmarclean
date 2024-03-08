@@ -7,6 +7,15 @@ RSpec.describe Record do
     it { is_expected.to belong_to(:feedback) }
   end
 
+  policy_published = {
+    'adkim' => 'r',
+    'aspf' => 'r',
+    'p' => 'none',
+    'sp' => 'none',
+    'pct' => '100',
+    'np' => 'none'
+  }
+
   record_hash = {
     'row' => {
       'source_ip' => '240.1.2.3',
@@ -33,7 +42,7 @@ RSpec.describe Record do
     }
   }
 
-  record = described_class.new(feedback: Feedback.create)
+  record = described_class.new(feedback: Feedback.create!(policy_published:))
 
   context 'with extracted hash, it' do
     record.update_from_hash(record_hash)
@@ -59,19 +68,15 @@ RSpec.describe Record do
     end
 
     describe 'has a valid dkim' do
-      it { expect(record.dkim_valid?).to be true }
+      it { expect(record.dkim_pass).to be true }
     end
 
     describe 'has a valid sfp' do
-      it { expect(record.spf_valid?).to be true }
+      it { expect(record.spf_pass).to be true }
     end
 
-    describe 'is fully valid' do
-      it { expect(record.fully_valid?).to be true }
-    end
-
-    describe 'is partially valid' do
-      it { expect(record.partially_valid?).to be true }
+    describe 'is as DMARC valid' do
+      it { expect(record.dmarc).to be true }
     end
   end
 end

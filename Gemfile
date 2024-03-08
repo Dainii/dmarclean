@@ -64,6 +64,10 @@ gem 'rotp'
 gem 'rqrcode'
 gem 'webauthn'
 
+# Sentry
+gem 'sentry-rails'
+gem 'sentry-ruby'
+
 # Dnsruby is a pure Ruby DNS client library which implements a stub resolver.
 # It aims to comply with all DNS RFCs, including DNSSEC NSEC3 support.
 gem 'dnsruby'

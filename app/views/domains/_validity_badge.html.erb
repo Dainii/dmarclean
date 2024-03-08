@@ -1,6 +1,6 @@
-<% if fully_valid %>
+<% if all_valid %>
   <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-green-700 dark:text-gray-800 bg-green-50 dark:bg-green-500 ring-green-600/20"><%= name %></div>
-<% elsif partially_valid %>
+<% elsif any_valid %>
   <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-yellow-700 dark:text-gray-800 bg-yellow-50 dark:bg-yellow-600 ring-yellow-600/20"><%= name %></div>
 <% else %>
   <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-red-700 dark:text-gray-800 bg-red-50 dark:bg-red-400 ring-red-600/20"><%= name %></div>

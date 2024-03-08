@@ -37,28 +37,28 @@ class Feedback < ApplicationRecord
     save
   end
 
-  def fully_valid?
-    records.all?(&:fully_valid?)
+  def all_records_spf_valid?
+    records.all? { |record| record.spf_result == 'pass' }
   end
 
-  def partially_valid?
-    records.any?(&:fully_valid?)
+  def any_records_spf_valid?
+    records.any? { |record| record.spf_result == 'pass' }
   end
 
-  def dkim_fully_valid?
-    records.all?(&:dkim_valid?)
+  def all_records_dkim_valid?
+    records.all? { |record| record.dkim_result == 'pass' }
   end
 
-  def dkim_partially_valid?
-    records.any?(&:dkim_valid?)
+  def any_records_dkim_valid?
+    records.any? { |record| record.dkim_result == 'pass' }
   end
 
-  def spf_fully_valid?
-    records.all?(&:spf_valid?)
+  def all_records_dmarc_valid?
+    records.all?(&:dmarc)
   end
 
-  def spf_partially_valid?
-    records.any?(&:spf_valid?)
+  def any_records_dmarc_valid?
+    records.any?(&:dmarc)
   end
 
   private
@@ -89,7 +89,7 @@ class Feedback < ApplicationRecord
   end
 
   def extract_policy_published
-    self.policy_published = raw_content['feedback']['policy_published'].except('domain')
+    self.policy_published = raw_content['feedback']['policy_published']
   end
 
   def extract_records

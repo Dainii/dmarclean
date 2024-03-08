@@ -4,8 +4,9 @@
       <div class="flex-auto">
         <div class="flex items-start gap-x-3">
           <div class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-100"><%= feedback.organization.name %></div>
-          <%= render partial: 'domains/validity_badge', locals: { fully_valid: feedback.dkim_fully_valid?, partially_valid: feedback.dkim_partially_valid?, name: 'DKIM' } %>
-          <%= render partial: 'domains/validity_badge', locals: { fully_valid: feedback.spf_fully_valid?, partially_valid: feedback.spf_partially_valid?, name: 'SPF' } %>
+          <%= render partial: 'domains/validity_badge', locals: { all_valid: feedback.all_records_dmarc_valid?, any_valid: feedback.any_records_dmarc_valid?, name: 'Dmarc' } %>
+          <%= render partial: 'domains/validity_badge', locals: { all_valid: feedback.all_records_dkim_valid?, any_valid: feedback.any_records_dkim_valid?, name: 'DKIM' } %>
+          <%= render partial: 'domains/validity_badge', locals: { all_valid: feedback.all_records_spf_valid?, any_valid: feedback.any_records_spf_valid?, name: 'SPF' } %>
         </div>
         <div class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= source_ip_list(feedback) %></div>
       </div>

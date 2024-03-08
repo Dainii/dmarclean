@@ -53,8 +53,8 @@ RSpec.describe Feedback do
     #   it { expect(feedback.records.count).to eq(1) }
     # end
 
-    describe 'is fully valid' do
-      it { expect(feedback.fully_valid?).to be true }
+    describe 'is a valid DMARC feedback' do
+      it { expect(feedback.all_records_dmarc_valid?).to be true }
     end
 
     # FIXME

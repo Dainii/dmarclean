@@ -11,3 +11,10 @@ fr:
       table_head_client: Client
       table_head_more_details: Plus de détails
       table_content_today: Aujourd'hui
+      title: Records
+      description: Une liste de tous les expéditeurs
+      table_head_source: Source
+      table_head_dmarc_status: DMARC
+      table_head_dkim_status: DKIM
+      table_head_spf_status: SPF
+      table_head_volume: Volume

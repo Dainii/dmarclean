@@ -11,3 +11,13 @@ en:
       table_head_client: Client
       table_head_more_details: More details
       table_content_today: Today
+      title: Records
+      description: A list of all different senders.
+      table_head_source: Source
+      table_head_dmarc_status: DMARC
+      table_head_dkim_status: DKIM
+      table_head_spf_status: SPF
+      table_head_volume: Volume
+    result_badge:
+      pass: Pass
+      fail: Fail
