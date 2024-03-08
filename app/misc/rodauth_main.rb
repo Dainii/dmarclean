@@ -6,15 +6,16 @@ require 'omniauth'
 class RodauthMain < Rodauth::Rails::Auth
   configure do
     # List of authentication features that are loaded.
-    enable :create_account, :verify_account, :verify_account_grace_period,
-           :login, :logout, :remember, :reset_password, :change_password,
-           :change_password_notify, :change_login, :verify_login_change,
-           :close_account, :otp, :sms_codes, :webauthn, :recovery_codes,
-           :internal_request, :omniauth, :i18n
+    enable :login, :logout, :remember, :internal_request, :i18n,
+           :reset_password, :change_password, :change_password_notify,
+           :change_login, :verify_login_change, :close_account
+
+    unless ENV.fetch('DISABLE_ACCOUNT_CREATION', true) == 'true'
+      enable :create_account, :verify_account, :verify_account_grace_period
+    end
 
     if ENV.fetch('ENABLE_SAML_AUTH', false) == 'true'
-      # See the Rodauth documentation for the list of available config options:
-      # http://rodauth.jeremyevans.net/documentation.html
+      enable :omniauth
 
       if ENV.fetch('METADATA_ENDPOINT', nil)
         idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
@@ -32,6 +33,8 @@ class RodauthMain < Rodauth::Rails::Auth
           idp_cert: ENV.fetch('IDP_CERTIFICATE', nil)
         }
       end
+    else
+      enable :otp, :sms_codes, :webauthn, :recovery_codes
     end
 
     # ==> General
@@ -67,8 +70,10 @@ class RodauthMain < Rodauth::Rails::Auth
     # Store password hash in a column instead of a separate table.
     account_password_hash_column :password_hash
 
-    # Set password when creating account instead of when verifying.
-    verify_account_set_password? false
+    unless ENV.fetch('DISABLE_ACCOUNT_CREATION', true) == 'true'
+      # Set password when creating account instead of when verifying.
+      verify_account_set_password? false
+    end
 
     # Change some default param keys.
     login_param 'email'
@@ -93,11 +98,13 @@ class RodauthMain < Rodauth::Rails::Auth
     create_reset_password_email do
       RodauthMailer.reset_password(self.class.configuration_name, account_id, reset_password_key_value)
     end
-    create_verify_account_email do
-      RodauthMailer.verify_account(self.class.configuration_name, account_id, verify_account_key_value)
-    end
-    create_verify_login_change_email do |_login|
-      RodauthMailer.verify_login_change(self.class.configuration_name, account_id, verify_login_change_key_value)
+    unless ENV.fetch('DISABLE_ACCOUNT_CREATION', true) == 'true'
+      create_verify_account_email do
+        RodauthMailer.verify_account(self.class.configuration_name, account_id, verify_account_key_value)
+      end
+      create_verify_login_change_email do |_login|
+        RodauthMailer.verify_login_change(self.class.configuration_name, account_id, verify_login_change_key_value)
+      end
     end
     create_password_changed_email do
       RodauthMailer.password_changed(self.class.configuration_name, account_id)
@@ -164,15 +171,17 @@ class RodauthMain < Rodauth::Rails::Auth
     extend_remember_deadline? true
 
     # ==> Hooks
-    # Validate custom fields in the create account form.
-    before_create_account do
-      throw_error_status(422, 'firstname', 'must be present') if param('firstname').empty?
-      throw_error_status(422, 'lastname', 'must be present') if param('lastname').empty?
-    end
+    unless ENV.fetch('DISABLE_ACCOUNT_CREATION', true) == 'true'
+      # Validate custom fields in the create account form.
+      before_create_account do
+        throw_error_status(422, 'firstname', 'must be present') if param('firstname').empty?
+        throw_error_status(422, 'lastname', 'must be present') if param('lastname').empty?
+      end
 
-    # Perform additional actions after the account is created.
-    after_create_account do
-      Person.create!(account_id:, firstname: param('firstname'), lastname: param('lastname'))
+      # Perform additional actions after the account is created.
+      after_create_account do
+        Person.create!(account_id:, firstname: param('firstname'), lastname: param('lastname'))
+      end
     end
 
     # Do additional cleanup after the account is closed.
@@ -184,8 +193,10 @@ class RodauthMain < Rodauth::Rails::Auth
     # Redirect to home page after logout.
     logout_redirect '/'
 
-    # Redirect to wherever login redirects to after account verification.
-    verify_account_redirect { login_redirect }
+    unless ENV.fetch('DISABLE_ACCOUNT_CREATION', true) == 'true'
+      # Redirect to wherever login redirects to after account verification.
+      verify_account_redirect { login_redirect }
+    end
 
     # Redirect to login page after password reset.
     reset_password_redirect { login_path }
@@ -201,18 +212,20 @@ class RodauthMain < Rodauth::Rails::Auth
     # remember_deadline_interval Hash[days: 30]
 
     # ==> Omniauth
-    omniauth_identity_update_hash do
-      {
-        info: omniauth_info.to_json
-      }
-    end
+    if ENV.fetch('ENABLE_SAML_AUTH', false) == 'true'
+      omniauth_identity_update_hash do
+        {
+          info: omniauth_info.to_json
+        }
+      end
 
-    after_omniauth_create_account do
-      Person.create!(
-        account_id:,
-        firstname: omniauth_info['first_name'],
-        lastname: omniauth_info['last_name']
-      )
+      after_omniauth_create_account do
+        Person.create!(
+          account_id:,
+          firstname: omniauth_info['first_name'],
+          lastname: omniauth_info['last_name']
+        )
+      end
     end
   end
 end
